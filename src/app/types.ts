@@ -3,18 +3,24 @@ export default class Constants {
   static readonly API = 'http://localhost:5187/api';
 }
 
-interface LoginUserDTO {
+export interface LoginUser {
 	email: String,
 	password: String
 }
 
-interface RegisterUserDTO {
+export interface UserDetails {
+	username: String;
+	email: String;
+	password: String;
+}
+
+export interface RegisterUserDTO {
 	username: String,
 	email: String,
 	password: String
 }
 
-interface Book {
+export interface Book {
 	isbn: String, // book id basically
 	title: String,
 	authors: String[],
@@ -26,12 +32,7 @@ interface Book {
 	rating: Number,
 }
 
-interface Review {
+export interface Review {
 	isbn: String,
 	rating: Number
-}
-
-interface UserDetails {
-  reviews: Review[],
-  username: String
 }

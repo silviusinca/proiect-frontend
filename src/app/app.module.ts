@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { BookViewComponent } from './book-view/book-view.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    FormsModule, 
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

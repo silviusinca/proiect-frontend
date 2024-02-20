@@ -1,0 +1,48 @@
+.registration-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 75px); /* Ensure the component is centered vertically with 75px from top */
+  }
+  
+  .registration-container {
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register-btn button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .register-btn button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
