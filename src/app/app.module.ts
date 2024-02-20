@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RouterModule } from '@angular/router';
 import { BookViewComponent } from './book-view/book-view.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BookListComponent } from './book-list/book-list.component';
     RegisterComponent,
     HomepageComponent,
     BookViewComponent,
-    BookListComponent
+    BookListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
