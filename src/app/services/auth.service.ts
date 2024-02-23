@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserDetails, LoginUser } from "./types";
-import Constants from './types';
+import { UserDetails, LoginUser } from "../types";
+import Constants from '../types';
 import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/firestore';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class AuthService {
     return userString ? JSON.parse(userString) : null;
   }
 
-  async login(email: String, password: String) {
+  async login(email: string, password: string) {
     const docRef = await addDoc(collection(this.firestore, 'test_users'), {
       email: email,
       password: password

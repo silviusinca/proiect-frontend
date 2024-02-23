@@ -4,35 +4,36 @@ export default class Constants {
 }
 
 export interface LoginUser {
-	email: String,
-	password: String
+	email: string,
+	password: string
 }
 
 export interface UserDetails {
-	username: String;
-	email: String;
-	password: String;
+	username: string;
+	email: string;
+	password: string;
 }
 
 export interface RegisterUserDTO {
-	username: String,
-	email: String,
-	password: String
+	username: string,
+	email: string,
+	password: string
 }
 
 export interface Book {
-	isbn: String, // book id basically
-	title: String,
-	authors: String[],
-	publisher: String,
-	language: String,
-	edition: String,
-	pages: Number,
-	image: String,
-	rating: Number,
+	isbn13: string,
+	title: string,
+	authors: string[],
+	publisher: string,
+	language: string,
+	pages: number,
+	imageUrl: string,
+	rating: number,
+	description: string,
+	genres: string[]
 }
 
 export interface Review {
-	isbn: String,
-	rating: Number
+	isbn: string,
+	rating: number
 }

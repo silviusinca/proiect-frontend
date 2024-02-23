@@ -5,8 +5,10 @@
     </div>
     <div class="book-details">
       <h2>{{ selectedBook.title }}</h2>
-      <p>By: {{ selectedBook.authors }}</p>
-      <p>{{ selectedBook.summary }}</p>
+      <p>By: {{ selectedBook.authors[0] }}</p>
+      <p>{{ selectedBook.description }}</p>
+      <p>{{ selectedBook.publisher }}</p>
+      <p>{{ selectedBook.language }}</p>
     </div>
   </div>
   

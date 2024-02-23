@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import Constants, {UserDetails, LoginUser} from "../types";
 import {
   FormBuilder,
@@ -36,31 +36,6 @@ export class RegisterComponent {
         email: this.registrationForm.get('email')?.value,
         password: this.registrationForm.get('password')?.value,
       };
-      // this.authService.register(userDetails).subscribe(
-      //   {
-      //     next: response => {
-      //       console.log('account created successfully!', response);
-      //       const loginUser: LoginUser = {
-      //         email: userDetails.email, 
-      //         password: userDetails.password
-      //       };
-            
-      //       this.authService.login(loginUser).subscribe(
-      //         {
-      //           next: response => {
-      //             console.log('successful log in!', response);
-      //             localStorage.setItem(Constants.USER_KEY, JSON.stringify(loginUser));
-      //             this.router.navigate(['/']);
-      //           },
-      //           error: err =>  {
-      //             console.error('log in failed!', err);
-      //           }
-      //         }
-      //       );
-      //     },
-      //     error: err => console.error('registration failed!', err)
-      //   },
-      // );
     }
     else {
       console.log('Form is invalid. Please fill in all required fields.');
