@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDetails, LoginUser } from "../types";
-import Constants from '../types';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -10,10 +8,14 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root'
 })
 export class AuthService { 
-  constructor(private router: Router, public afAuth: AngularFireAuth) { }
+  userState$: Observable<any>;
 
-  login(loginUser: LoginUser) {    
-    return this.afAuth.signInWithEmailAndPassword(loginUser.email, loginUser.password)
+  constructor(private router: Router, public afAuth: AngularFireAuth) { 
+    this.userState$ = this.afAuth.authState;
+  }
+
+  async login(loginUser: LoginUser) {    
+    await this.afAuth.signInWithEmailAndPassword(loginUser.email, loginUser.password)
       .then(() => {
         this.router.navigate(['/']);
       })
@@ -22,8 +24,8 @@ export class AuthService {
     })
   }
 
-  register(userDetails: UserDetails) {
-    return this.afAuth.createUserWithEmailAndPassword(userDetails.email, userDetails.password)
+  async register(userDetails: UserDetails) {
+    await this.afAuth.createUserWithEmailAndPassword(userDetails.email, userDetails.password)
       .then(() => {
         this.router.navigate(['/']);
       })
@@ -32,15 +34,15 @@ export class AuthService {
       });
   }
 
-  isLoggedIn(): boolean {
-    return this.afAuth.currentUser !== null;
-  }
-
-  logout() {
-    return this.afAuth.signOut().then(() => {
+  async logout() {
+    await this.afAuth.signOut().then(() => {
       window.alert('Logged out!');
       this.router.navigate(['/']);
     });
+  }
+
+  isLoggedIn() {
+    return this.afAuth.authState !== null;
   }
 
 }
