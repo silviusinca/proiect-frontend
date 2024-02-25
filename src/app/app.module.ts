@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { BookService } from './services/book.service';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
     HomepageComponent,
     BookViewComponent,
     BookListComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

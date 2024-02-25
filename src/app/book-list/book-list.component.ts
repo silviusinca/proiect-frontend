@@ -13,8 +13,6 @@ export class BookListComponent implements OnInit{
   books$: Observable<Book[]> | undefined;
 
   constructor(private router: Router, private bookService: BookService) {
-    // this.getBooks();
-    // console.log(this.getBooks());
   }
 
   ngOnInit(): void {
@@ -23,10 +21,5 @@ export class BookListComponent implements OnInit{
 
   showBookDetails(book: Book) {
     this.router.navigate(['/book', book.isbn13]);
-  }
-
-  getBooks() {
-    // this.books = await this.bookService.getBooks() as Book[];
-    // this.books = this.bookService.getBooks();
   }
 }

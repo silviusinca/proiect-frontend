@@ -37,3 +37,9 @@ export interface Review {
 	isbn: string,
 	rating: number
 }
+
+export interface FavBook {
+	userId: string,
+	isbn13: string;
+}
+  

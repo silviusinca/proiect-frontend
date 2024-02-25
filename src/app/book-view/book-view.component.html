@@ -1,9 +1,9 @@
 <div class="containerExtra">
-
   <div class="book-view-container" *ngIf="selectedBook$ | async as selectedBook">
     <div class="book-image">
       <img [src]="selectedBook.imageUrl" alt="Book Image">
-      <div class="rating">Rating: {{ selectedBook.rating }}/5</div>
+
+      <button *ngIf="isLoggedIn" [disabled]="bookAdded" (click)="addToFavorites(selectedBook.isbn13)" class="addToFavorites-button">Add to Favorites</button>
     </div>
     <div class="book-details">
       <h1 id="title">{{ selectedBook.title }}</h1>

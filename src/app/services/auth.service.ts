@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.afAuth.authState !== null;
+    return this.userState$ !== null;
   }
 
 }

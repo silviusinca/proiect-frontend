@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookViewComponent } from './book-view/book-view.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'book/:isbn13',
     component: BookViewComponent,
+  },
+  {
+    path: 'favourites',
+    component: FavouritesComponent
   }
 ];
 
