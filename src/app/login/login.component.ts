@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import Constants, { LoginUser } from '../types';
+import { LoginUser } from '../types';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -26,10 +28,15 @@ export class LoginComponent {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       };
-      this.authService.login(user.email, user.password);
-
+      try {
+        this.authService.login(user);
+      } catch (error) {
+        console.log("login failed!", error);
+        this.incorrectCredentials = true;
+      }
     } else {
       console.log('invalid form!');
+      this.incorrectCredentials = true;
     }
   }
 

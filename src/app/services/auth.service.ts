@@ -3,41 +3,44 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDetails, LoginUser } from "../types";
 import Constants from '../types';
-import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService { 
-  private apiUrl = 'http://your-api-url'; 
-  private readonly userKey = Constants.USER_KEY;
+  constructor(private router: Router, public afAuth: AngularFireAuth) { }
 
-  constructor(public firestore: Firestore) { }
+  login(loginUser: LoginUser) {    
+    return this.afAuth.signInWithEmailAndPassword(loginUser.email, loginUser.password)
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch ((error) => {
+      console.error("Login error: ", error);
+    })
+  }
 
-  // login(loginUser: LoginUser): Observable<any> {
-    // return this.http.post<any>(`${this.apiUrl}/login`, loginUser);
-  // }
-
-  // register(userDetails: UserDetails): Observable<any> {
-    // return this.http.post<any>(`${this.apiUrl}/register`, { userDetails });
-  // }
+  register(userDetails: UserDetails) {
+    return this.afAuth.createUserWithEmailAndPassword(userDetails.email, userDetails.password)
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch((error) => {
+        console.error("Registration error: ", error);
+      });
+  }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem(this.userKey);
+    return this.afAuth.currentUser !== null;
   }
 
-  getUser(): LoginUser | null {
-    const userString = localStorage.getItem(this.userKey);
-    return userString ? JSON.parse(userString) : null;
-  }
-
-  async login(email: string, password: string) {
-    const docRef = await addDoc(collection(this.firestore, 'test_users'), {
-      email: email,
-      password: password
+  logout() {
+    return this.afAuth.signOut().then(() => {
+      window.alert('Logged out!');
+      this.router.navigate(['/']);
     });
-    console.log("Document written with ID: ", docRef.id);
   }
-  
 
 }

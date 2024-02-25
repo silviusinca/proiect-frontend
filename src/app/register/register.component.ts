@@ -36,6 +36,12 @@ export class RegisterComponent {
         email: this.registrationForm.get('email')?.value,
         password: this.registrationForm.get('password')?.value,
       };
+
+      try {
+        this.authService.register(userDetails);
+      } catch (error) {
+        console.log("registration failed!", error);
+      }
     }
     else {
       console.log('Form is invalid. Please fill in all required fields.');

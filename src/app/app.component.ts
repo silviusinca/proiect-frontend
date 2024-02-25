@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BookService } from './services/book.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,8 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'proiect-frontend';
+
+  // constructor(private bookService: BookService) {
+  //   this.bookService.loadBooks();
+  // }
 }

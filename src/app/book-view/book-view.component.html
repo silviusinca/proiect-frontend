@@ -1,14 +1,17 @@
-<div class="book-view-container">
+<div class="containerExtra">
+
+<div class="book-view-container" *ngIf="selectedBook">
     <div class="book-image">
       <img [src]="selectedBook.imageUrl" alt="Book Image">
       <div class="rating">Rating: {{ selectedBook.rating }}/5</div>
     </div>
     <div class="book-details">
-      <h2>{{ selectedBook.title }}</h2>
-      <p>By: {{ selectedBook.authors[0] }}</p>
-      <p>{{ selectedBook.description }}</p>
-      <p>{{ selectedBook.publisher }}</p>
-      <p>{{ selectedBook.language }}</p>
+      <h1 id="title">{{ selectedBook.title }}</h1>
+      <h2 id="authors">By: {{ selectedBook.authors }}</h2>
+      <p id="publisher">Publisher: {{ selectedBook.publisher }}</p>
+      <p id="language">Language: {{ selectedBook.language }}</p>
+      <p id="description">{{ selectedBook.description }}</p>
     </div>
   </div>
+</div>
   

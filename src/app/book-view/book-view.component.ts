@@ -11,18 +11,17 @@ import { Book } from '../types';
 export class BookViewComponent implements OnInit {
   selectedBook: any;
 
-  constructor(private route: ActivatedRoute, private bookService: BookService) { 
-    this.route.params.subscribe(params => {
+  constructor(private route: ActivatedRoute, private bookService: BookService) { }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(async params => {
       const isbn = params['isbn13'];
-      this.selectedBook = this.getBookDetailsByTitle(isbn);
+      this.selectedBook = await this.getBookDetailsByISBN(isbn);
     });
   }
 
-  ngOnInit(): void {
-  }
-
-  async getBookDetailsByTitle(id: string) {
-    const book = await this.bookService.getBookById(id);
+  async getBookDetailsByISBN(isbn: string) {
+    const book = await this.bookService.getBookById(isbn);
     return book;
   }
 }

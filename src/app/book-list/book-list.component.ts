@@ -13,16 +13,15 @@ export class BookListComponent {
 
   constructor(private router: Router, private bookService: BookService) {
     this.getBooks();
+    console.log(this.getBooks());
   }
 
-  showBookDetails(book: any) {
-    book = book as Book;
-    console.log(book);
-    console.log(book.isbn13);
+  showBookDetails(book: Book) {
     this.router.navigate(['/book', book.isbn13]);
   }
 
-  async getBooks() {
-    this.books = await this.bookService.getBooks();
+  getBooks() {
+    // this.books = await this.bookService.getBooks() as Book[];
+    this.books = this.bookService.getBooks();
   }
 }

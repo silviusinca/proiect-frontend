@@ -12,9 +12,13 @@ import { BookListComponent } from './book-list/book-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+// import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth'
+import { AuthService } from './services/auth.service';
+import { AngularFireModule } from '@angular/fire/compat';
+import { BookService } from './services/book.service';
 
 @NgModule({
   declarations: [
@@ -33,10 +37,12 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirestore(() => getFirestore()),
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService, AngularFireAuth, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

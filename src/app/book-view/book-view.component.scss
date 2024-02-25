@@ -1,38 +1,57 @@
 .book-view-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 20px;
-    margin-top: 75px;
-  }
-  
-  .book-image {
-    width: 30%;
-    margin-right: 20px;
-  }
-  
-  .book-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  
-  .rating {
-    font-size: 18px;
-    margin-top: 10px;
-  }
-  
-  .book-details {
-    width: 70%;
-  }
-  
-  .book-details h2 {
-    margin-top: 0;
-  }
-  
-  .book-details p {
-    margin: 10px 0;
-  }
-  
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 75px;
+}
+
+.containerExtra {
+  width: 80%;
+  margin: auto;
+  white-space: pre-wrap;
+  font-size: 18px;
+}
+
+.book-image {
+  width: 30%;
+  margin-right: 20px;
+}
+
+.book-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.rating {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.book-details {
+  width: 70%;
+}
+
+.book-details h2 {
+  margin-top: 0;
+}
+
+.book-details p {
+  margin: 10px 0;
+}
+
+#title {
+  font-size: 44px;
+}
+
+#authors {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#publisher, #language {
+  font-weight: 500;
+}
