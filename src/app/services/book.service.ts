@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-// import { Firestore, addDoc, collection, getDocs, query, where } from '@angular/fire/firestore';
 import { Book } from '../types';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-// import { addDoc, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,33 +12,28 @@ export class BookService {
   constructor(private firestore: AngularFirestore) { }
 
   getBooks() {
-    // return (
-    //   await getDocs(query(collection(this.firestore, 'books')))
-    // ).docs.map((books) => books.data());
-    const snapshot = this.firestore.collection<Book>('books').get();
-    console.log(snapshot.docs.map(doc => doc.data()));
-
+    return this.firestore.collection("books").snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as Book;
+          return { ...data };
+        });
+      })
+    );
   }
 
-  async getBookById(isbn: string): Promise<Book> {
-    let bookToReturn!: Book;
-    const errBook: Book = {
-      isbn13: "not-found", title: 'Not Found', authors: ['Not Found'], imageUrl: 'https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1571368588313-C5G9UTE0WVNEV5TJXW5O/error-3060993_1280.png', rating: 4, description: 'Not Found', pages: -1, publisher: "Not Found", genres: ["Not Found"],
-      language: 'Not Found'
-    };
-    
-    try {
-      // const q = query(collection(this.firestore, "books"), where("isbn13", "==", isbn));
-      // const querySnapshot = await getDocs(q);
-
-      // querySnapshot.forEach((doc) => {
-      //   bookToReturn = doc.data() as Book;
-      // })
-      return bookToReturn;
-    } catch (error) {
-      console.log(error);
-      return errBook;
-    }
+  getBookById(isbn: string): Observable<Book | null> {
+    return this.firestore.collection("books", ref => ref.where('isbn13', '==', isbn))
+    .snapshotChanges().pipe(
+      map(actions => {
+        const book = actions.map(a => {
+          const data = a.payload.doc.data() as Book;
+          return { ...data };
+        });
+        console.log(book[0]);
+        return book.length ? book[0] : null;
+      })
+    );
   }
 
   // async loadBooks() {

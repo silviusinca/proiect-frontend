@@ -1,6 +1,6 @@
 <div class="containerExtra">
 
-<div class="book-view-container" *ngIf="selectedBook">
+  <div class="book-view-container" *ngIf="selectedBook$ | async as selectedBook">
     <div class="book-image">
       <img [src]="selectedBook.imageUrl" alt="Book Image">
       <div class="rating">Rating: {{ selectedBook.rating }}/5</div>

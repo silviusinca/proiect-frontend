@@ -1,6 +1,6 @@
 <div class="another-container">
   <div class="book-list-container">
-    <div *ngFor="let book of books" class="book-card" (click)="showBookDetails(book)">
+    <div *ngFor="let book of books$ | async" class="book-card" (click)="showBookDetails(book)">
       <img [src]="book.imageUrl" alt="Book Image">
       <div class="book-info">
         <h3>{{ book.title }}</h3>

@@ -12,13 +12,13 @@ import { BookListComponent } from './book-list/book-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-// import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AuthService } from './services/auth.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { BookService } from './services/book.service';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -37,10 +37,10 @@ import { BookService } from './services/book.service';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    // provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireModule.initializeApp(environment.firebase),
     provideFirestore(() => getFirestore()),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [AuthService, AngularFireAuth, BookService],
   bootstrap: [AppComponent]
